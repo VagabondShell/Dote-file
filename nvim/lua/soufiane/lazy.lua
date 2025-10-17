@@ -19,5 +19,9 @@ require("lazy").setup({
   spec = {
     { import = "soufiane.plugins" },
   },
-  checker = { enabled = true },
+-- File: lua/soufiane/plugins/theme.lua
+  checker = { 
+      enabled = true,
+      notify = false,
+  },
 })
