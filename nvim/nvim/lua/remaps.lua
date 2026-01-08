@@ -45,10 +45,8 @@ local function smart_nav(dir)
     local current_win = vim.api.nvim_get_current_win()
     -- Try to move in the direction
     vim.cmd("wincmd " .. dir)
-    
     -- If the window ID didn't change, we hit a wall!
     if vim.api.nvim_get_current_win() == current_win then
-        -- Wrap to the opposite side
         if dir == 'h' then vim.cmd("wincmd 999l") -- Hit Left wall -> Go Far Right
         elseif dir == 'l' then vim.cmd("wincmd 999h") -- Hit Right wall -> Go Far Left
         elseif dir == 'j' then vim.cmd("wincmd 999k") -- Hit Bottom wall -> Go Top
@@ -57,11 +55,11 @@ local function smart_nav(dir)
     end
 end
 
--- Map the keys to the smart function
-vim.keymap.set("n", "<C-h>", function() smart_nav('h') end)
-vim.keymap.set("n", "<C-j>", function() smart_nav('j') end)
-vim.keymap.set("n", "<C-k>", function() smart_nav('k') end)
-vim.keymap.set("n", "<C-l>", function() smart_nav('l') end)
+-- Map Shift + h/j/k/l to the smart function
+vim.keymap.set("n", "<S-h>", function() smart_nav('h') end)
+vim.keymap.set("n", "<S-j>", function() smart_nav('j') end)
+vim.keymap.set("n", "<S-k>", function() smart_nav('k') end)
+vim.keymap.set("n", "<S-l>", function() smart_nav('l') end)
 -- =====================================================
 -- Save file with Leader + w
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>")
